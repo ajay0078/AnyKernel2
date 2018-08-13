@@ -84,7 +84,7 @@ on boot
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/use_migration_notif 0
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/above_hispeed_delay "0 1800000:90000"
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/go_hispeed_load 300
-    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/timer_rate 000
+    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/timer_rate 1000
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/hispeed_freq 1401600
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/io_is_busy 0
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/target_loads "35 600000:50 800000:60 900000:85 1200000:90 1800000:99"
