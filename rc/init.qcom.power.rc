@@ -87,7 +87,7 @@ on boot
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/timer_rate 10000
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/hispeed_freq 1401600
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/io_is_busy 0
-    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/target_loads "35 900000:50 1300000:60 1400000:90 1800000:99"
+    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/target_loads "35 900000:40 1300000:60 1400000:90 1800000:99"
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/min_sample_time 0
 	write /sys/devices/system/cpu/cpu2/cpufreq/interactive/boost 0
 	write /sys/devices/system/cpu/cpu2/cpufreq/interactive/timer_slack -1
