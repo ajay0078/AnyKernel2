@@ -185,7 +185,7 @@ on property:sys.boot_completed=1
     trigger enable-low-power
 
     # Set I/O squeduler
-    setprop sys.io.scheduler "deadline"
+    setprop sys.io.scheduler "maple"
 
     # Start I/O prefetcher service
     start iop
