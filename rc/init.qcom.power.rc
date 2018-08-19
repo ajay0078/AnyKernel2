@@ -102,6 +102,12 @@ on boot
 	# Input boost config
     write /sys/module/cpu_boost/parameters/input_boost_freq "0:960000 1:0 2:12480000 3:0"
     write /sys/module/cpu_boost/parameters/input_boost_ms 40
+	
+	# Virtual Memory
+	write /proc/sys/vm/dirty_ratio 40
+	write /proc/sys/vm/dirty_background_ratio 10
+	write /proc/sys/vm/swappiness 40
+	write /proc/sys/vm/min_free_kbytes 7632
 
 on charger
     wait /dev/block/platform/soc/${ro.boot.bootdevice}
@@ -143,7 +149,7 @@ on enable-low-power
     write /proc/sys/kernel/sched_boost 0
     write /proc/sys/kernel/sched_upmigrate 92
     write /proc/sys/kernel/sched_downmigrate 85
-    write /proc/sys/kernel/sched_freq_inc_notify 400000 
+    write /proc/sys/kernel/sched_freq_inc_notify 500000 
     write /proc/sys/kernel/sched_freq_dec_notify 410000
     write /proc/sys/kernel/sched_spill_nr_run 5
     write /proc/sys/kernel/sched_init_task_load 30
@@ -185,7 +191,7 @@ on property:sys.boot_completed=1
     trigger enable-low-power
 
     # Set I/O squeduler
-    setprop sys.io.scheduler "maple"
+    setprop sys.io.scheduler "cfq"
 
     # Start I/O prefetcher service
     start iop
@@ -196,12 +202,6 @@ on property:sys.boot_completed=1
     write /sys/block/mmcblk0rpmb/bdi/read_ahead_kb 512
     write /sys/block/mmcblk0rpmb/queue/read_ahead_kb 512
     write /sys/block/mmcblk0rpmb/queue/read_ahead_kb 512
-	
-	# Virtual Memory
-	write /proc/sys/vm/dirty_ratio 40
-	write /proc/sys/vm/dirty_background_ratio 10
-	write /proc/sys/vm/swappiness 40
-	write /proc/sys/vm/min_free_kbytes 7632
 	
 	#Set Headphone gain
 	write /sys/kernel/sound_control/headphone_gain "10 10"
@@ -219,21 +219,7 @@ on property:sys.boot_completed=1
 	write /sys/devices/platform/kcal_ctrl.0/kcal_hue 0
 	write /sys/devices/platform/kcal_ctrl.0/kcal "245 246 256"
 	write /sys/devices/platform/kcal_ctrl.0/kcal_enable 1
-	write /sys/devices/platform/kcal_ctrl.0/kcal_sat 260
-	
-	# Set thermal restrictions
-    write /sys/kernel/msm_thermal/enabled 0
-    write /sys/kernel/msm_thermal/zone0 "1401600 1785600 41 39"
-    write /sys/kernel/msm_thermal/zone1 "1324800 1555200 42 41"
-    write /sys/kernel/msm_thermal/zone2 "1228800 1478400 43 42"
-    write /sys/kernel/msm_thermal/zone3 "1228800 1401600 44 43"
-    write /sys/kernel/msm_thermal/zone4 "1190400 1324800 45 44"
-    write /sys/kernel/msm_thermal/zone5 "1190400 1248000 47 45"
-    write /sys/kernel/msm_thermal/zone6 "1113600 1190400 49 47"
-    write /sys/kernel/msm_thermal/zone7 "1036800 940800 54 49"
-    write /sys/kernel/msm_thermal/zone8 "729600 729600 65 60"
-    write /sys/kernel/msm_thermal/sampling_ms 8000
-    write /sys/kernel/msm_thermal/enabled 1    
+	write /sys/devices/platform/kcal_ctrl.0/kcal_sat 260  
 
     # update cpusets now that boot is complete and we want better load balancing
     write /dev/cpuset/top-app/cpus 0-3
