@@ -21,8 +21,7 @@ device.name5=Z2131
 block=/dev/block/bootdevice/by-name/boot;
 is_slot_device=0;
 ramdisk_compression=auto;
-setprop ro.config.zram false 
-swapoff /dev/block/zram0
+
 
 ## AnyKernel methods (DO NOT CHANGE)
 # import patching functions/variables - see for reference
